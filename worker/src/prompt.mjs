@@ -73,6 +73,8 @@ OBJECTS (max about 14; at most 6 terrains)
 
 COMPOSITION
 - Think like a 1998 Bryce artist: a strong silhouette, layered ranges receding into haze, a shiny focal object (chrome or glass sphere, gold pyramid) near the centre third, reflections in water, a dramatic sky. Keep the focal object between 20 and 120 m from the camera and make sure it is inside the camera's field of view.
+- Nothing may block the view. No terrain footprint may contain the camera position, and terrain between the camera and the focal object must start at least 40 m in front of the camera and stay below the eye line (camera y higher than that terrain's height). Prefer to frame the focal object over water or open ground.
+- Light the scene so the relief reads: prefer side or three-quarter light, with sunAz 60-130 degrees away from the camera yaw. Put the sun in frame only when the user asks for a sunset or sunrise view; then raise the camera, keep the foreground open ground or water, and use enough haze (0.4+) so the backlit land does not turn into a black silhouette.
 - Use seeds 1-99999 and vary them between terrains.
 
 EDITING

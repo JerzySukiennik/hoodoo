@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Hoodoo · landscape raytracer</title>
+<meta name="description" content="Hoodoo: a web landscape raytracer with the look of late-90s Bryce renders and a modern interface.">
+<meta name="theme-color" content="#0b0b0c">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230b0b0c'/%3E%3Cpath d='M7 23l6-11 4 6 3-4 5 9z' fill='none' stroke='%23ff9f0a' stroke-width='2' stroke-linejoin='round' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="app">
+  <canvas id="view"></canvas>
+  <canvas id="overlay"></canvas>
+  <header id="top"></header>
+  <aside id="outliner" class="panel"></aside>
+  <aside id="inspector" class="panel"></aside>
+  <footer id="timeline" class="panel"></footer>
+  <div id="renderbar"></div>
+  <div id="aibox" class="panel"></div>
+  <div id="proposal" class="panel"></div>
+  <div id="wins"></div>
+  <div id="hint"></div>
+  <div id="toast" class="toast"></div>
+</div>
+<div id="boot">
+  <div class="boot-card">
+    <div class="boot-word">hoodoo</div>
+    <div class="boot-bar"><i></i></div>
+    <div id="boot-msg" class="boot-msg"></div>
+  </div>
+</div>
+<script type="module">
+  import { t } from './src/ui/i18n.js';
+  document.documentElement.lang = t('loading').startsWith('Komp') ? 'pl' : 'en';
+  document.getElementById('boot-msg').textContent = t('loading');
+  document.getElementById('hint').textContent = t('hint');
+  import('./src/main.js');
+</script>
+</body>
+</html>

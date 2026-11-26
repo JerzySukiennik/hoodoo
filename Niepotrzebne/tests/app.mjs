@@ -10,7 +10,7 @@ const logs = [];
 page.on('console', m => { if (m.type() !== 'log' || process.env.V) logs.push(`[${m.type()}] ${m.text()}`); });
 page.on('pageerror', e => logs.push(`[pageerror] ${e.message}\n${(e.stack||'').split('\n').slice(0,4).join('\n')}`));
 const t0 = Date.now();
-await page.goto(`http://127.0.0.1:8979/?${query}`, {waitUntil: 'load'});
+await page.goto(`${process.env.BASE || 'http://127.0.0.1:8979/'}?${query}`, {waitUntil: 'load'});
 try { await page.waitForFunction(() => window.HOODOO && document.body.classList.contains('ready'), null, {timeout: 120000}); } catch (e) { logs.push('[harness] boot timeout ' + await page.evaluate(() => document.getElementById('boot-msg')?.textContent)); }
 logs.push('[boot] ' + (Date.now() - t0) + ' ms');
 if (setup) { try { const r = await page.evaluate(setup); if (r !== undefined) logs.push('[setup] ' + JSON.stringify(r)); } catch (e) { logs.push('[setup error] ' + e.message); } }

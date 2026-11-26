@@ -104,6 +104,9 @@ export function buildRenderUI(app) {
       lastPrompt = refine ? lastPrompt + ' / ' + text : text;
       app.scene = sc;
       app.sel = null;
+      const cam = sc.camera;
+      const ground = app.groundUnder(cam.pos[0], cam.pos[2]);
+      if (cam.pos[1] < ground + 3) cam.pos[1] = ground + 5;
       app.emit('scene');
       app.changed('scene', { silent: true });
       showProposal(sc);
