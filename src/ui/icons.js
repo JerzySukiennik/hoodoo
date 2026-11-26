@@ -1,0 +1,62 @@
+// Hoodoo icons: monoline 20px SVG paths, one stroke weight, round caps.
+
+const P = {
+  terrain: 'M2 16l5-8 3 4 2-3 6 7z M7 8l1.5 2.3',
+  stone: 'M4 14.5c-1-3 .5-6.5 3.5-7.5 2-.8 3-2.2 5.5-1.5 2.6.8 4 3.4 3.5 6.3-.4 2.4-2 4.2-4.6 4.6-3 .5-6.8.6-7.9-1.9z',
+  sphere: 'M10 3a7 7 0 1 0 0 14 7 7 0 1 0 0-14z M3 10c0 1.7 3.1 3 7 3s7-1.3 7-3',
+  cube: 'M10 2.8l6.5 3.6v7.2L10 17.2l-6.5-3.6V6.4z M3.5 6.4L10 10l6.5-3.6 M10 10v7.2',
+  cylinder: 'M4 5c0-1.4 2.7-2.5 6-2.5s6 1.1 6 2.5-2.7 2.5-6 2.5S4 6.4 4 5z M4 5v10c0 1.4 2.7 2.5 6 2.5s6-1.1 6-2.5V5',
+  cone: 'M10 2.5l6 12.5 M10 2.5L4 15 M4 15c0 1.4 2.7 2.5 6 2.5s6-1.1 6-2.5-2.7-2.5-6-2.5-6 1.1-6 2.5z',
+  torus: 'M2.5 10c0-2.5 3.4-4.5 7.5-4.5s7.5 2 7.5 4.5-3.4 4.5-7.5 4.5S2.5 12.5 2.5 10z M7 10.2c.8.8 1.8 1.1 3 1.1s2.2-.3 3-1.1 M7.6 10.8c.6-.7 1.4-1 2.4-1s1.8.3 2.4 1',
+  pyramid: 'M10 2.5l7 13H3z M10 2.5l2 13',
+  disc: 'M2.5 11c0-2.2 3.4-4 7.5-4s7.5 1.8 7.5 4-3.4 4-7.5 4-7.5-1.8-7.5-4z',
+  square: 'M5.5 6.5h12l-3 7h-12z',
+  plane: 'M2 13h16 M4 16h12 M6 10h8',
+  water: 'M2 8c2 0 2-1.5 4-1.5S8 8 10 8s2-1.5 4-1.5S16 8 18 8 M2 12c2 0 2-1.5 4-1.5s2 1.5 4 1.5 2-1.5 4-1.5 2 1.5 4 1.5 M2 16c2 0 2-1.5 4-1.5s2 1.5 4 1.5 2-1.5 4-1.5 2 1.5 4 1.5',
+  light: 'M10 2.5a5 5 0 0 0-3 9c.6.5 1 1.2 1 2V14h4v-.5c0-.8.4-1.5 1-2a5 5 0 0 0-3-9z M8 16.5h4',
+  sky: 'M2.5 14h15 M6 14a4 4 0 0 1 8 0 M10 5.5V4 M4.6 8.2l-1-1 M15.4 8.2l1-1',
+  camera: 'M3 6.5h3l1.5-2h5L14 6.5h3v9H3z M10 13.3a2.6 2.6 0 1 0 0-5.2 2.6 2.6 0 0 0 0 5.2z',
+  eye: 'M2 10s3-5.5 8-5.5S18 10 18 10s-3 5.5-8 5.5S2 10 2 10z M10 12.3a2.3 2.3 0 1 0 0-4.6 2.3 2.3 0 0 0 0 4.6z',
+  eyeOff: 'M3 3l14 14 M8.2 4.8A8.6 8.6 0 0 1 10 4.5c5 0 8 5.5 8 5.5a14 14 0 0 1-2.4 3 M5 6.6A13 13 0 0 0 2 10s3 5.5 8 5.5c1.3 0 2.4-.3 3.4-.8',
+  trash: 'M4 6h12 M8 6V4h4v2 M5.5 6l.8 10.5h7.4L14.5 6',
+  duplicate: 'M7 7h9v9H7z M4 13V4h9',
+  land: 'M10 3v9 M6.5 8.5L10 12l3.5-3.5 M3 16.5h14',
+  focus: 'M3 7V3h4 M13 3h4v4 M17 13v4h-4 M7 17H3v-4 M10 11.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z',
+  undo: 'M7.5 4.5L4 8l3.5 3.5 M4 8h8a4.5 4.5 0 0 1 0 9H9',
+  redo: 'M12.5 4.5L16 8l-3.5 3.5 M16 8H8a4.5 4.5 0 0 0 0 9h3',
+  render: 'M10 2.5a7.5 7.5 0 1 0 0 15 7.5 7.5 0 0 0 0-15z M10 2.5L13 9 M17.2 8.2L10.3 9.5 M15.4 15.3l-4.8-5 M7.6 17.1l2-6.6 M2.9 12.4l6.4-2.6 M4.6 4.8l4.8 4.6',
+  menu: 'M3.5 6h13 M3.5 10h13 M3.5 14h13',
+  close: 'M5 5l10 10 M15 5L5 15',
+  chevron: 'M6 8l4 4 4-4',
+  chevronRight: 'M8 6l4 4-4 4',
+  play: 'M6.5 4.5l9 5.5-9 5.5z',
+  pause: 'M7 4.5v11 M13 4.5v11',
+  key: 'M10 4l6 6-6 6-6-6z',
+  film: 'M3 4.5h14v11H3z M6 4.5v11 M14 4.5v11 M3 8h3 M3 12h3 M14 8h3 M14 12h3',
+  describe: 'M3.5 4.5h13v9h-7l-4 3v-3h-2z M6.5 8h7 M6.5 11h4.5',
+  dice: 'M4 4h12v12H4z M7.5 7.5h.01 M12.5 12.5h.01 M12.5 7.5h.01 M7.5 12.5h.01 M10 10h.01',
+  move: 'M10 2.5v15 M2.5 10h15 M10 2.5L8 4.5 M10 2.5l2 2 M10 17.5l-2-2 M10 17.5l2-2 M2.5 10l2-2 M2.5 10l2 2 M17.5 10l-2-2 M17.5 10l-2 2',
+  rotate: 'M16 10a6 6 0 1 1-1.8-4.3 M16 3.5v3.2h-3.2',
+  scale: 'M3.5 16.5l13-13 M11 3.5h5.5V9 M9 16.5H3.5V11',
+  brush: 'M14.5 3l2.5 2.5-7 7-2.5-2.5z M7.5 10l-2 .5c-1.5.4-1.8 2-2 3.5-.1 1.2-.5 2-1 2.5 2.5.5 5-.2 6.2-1.8.7-1 .8-2 .8-2.7',
+  upload: 'M10 13V3.5 M6.5 7L10 3.5 13.5 7 M3.5 13v3.5h13V13',
+  download: 'M10 3.5V13 M6.5 9.5L10 13l3.5-3.5 M3.5 13v3.5h13V13',
+  plus: 'M10 4v12 M4 10h12',
+  sliders: 'M4 5.5h6 M14 5.5h2 M12 3.5v4 M4 10h2 M10 10h6 M8 8v4 M4 14.5h8 M16 14.5h0 M14 12.5v4',
+  expand: 'M6 12l4-4 4 4',
+  collapse: 'M6 8l4 4 4-4',
+  folder: 'M2.5 5.5h5l1.5 2h8.5v8.5h-15z',
+  save: 'M4 3.5h9.5L16.5 6.5v10h-12.5z M7 3.5v4h6v-4 M7 16.5v-5h6v5',
+  image: 'M3 4h14v12H3z M3 13l4-4 3.5 3.5L13 10l4 4 M13.5 7.5a1 1 0 1 0 0-.1',
+  stop: 'M5.5 5.5h9v9h-9z',
+  sun: 'M10 13.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z M10 2v1.8 M10 16.2V18 M2 10h1.8 M16.2 10H18 M4.3 4.3l1.3 1.3 M14.4 14.4l1.3 1.3 M4.3 15.7l1.3-1.3 M14.4 5.6l1.3-1.3',
+  check: 'M4.5 10.5l3.5 3.5 7.5-8',
+  grid: 'M3 3h14v14H3z M3 8h14 M3 12.5h14 M8 3v14 M12.5 3v14',
+};
+
+export function icon(name, size = 18) {
+  const d = P[name] || P.sphere;
+  return `<svg class="ic" width="${size}" height="${size}" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="${d}"/></svg>`;
+}
+
+export const TYPE_ICON = { terrain: 'terrain', stone: 'stone', sphere: 'sphere', cube: 'cube', cylinder: 'cylinder', cone: 'cone', torus: 'torus', pyramid: 'pyramid', disc: 'disc', square: 'square', plane: 'plane', water: 'water', light: 'light' };
