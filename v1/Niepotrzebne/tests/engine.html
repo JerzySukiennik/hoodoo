@@ -1,0 +1,41 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><style>html,body{margin:0;background:#111}canvas{width:100vw;height:100vh;display:block}</style></head>
+<body><canvas id="c"></canvas><div id="st" style="position:fixed;top:4px;left:4px;color:#fff;font:12px monospace"></div>
+<script type="module">
+import { Renderer, QUALITY } from '/src/engine/renderer.js';
+import { buildScene } from '/src/scene/scene.js';
+const q = new URLSearchParams(location.search);
+const c = document.getElementById('c');
+c.width = innerWidth; c.height = innerHeight;
+const st = document.getElementById('st');
+window.T = { status: 'boot' };
+try {
+  const t0 = performance.now();
+  const r = new Renderer(c);
+  await r.init();
+  T.compile = Math.round(performance.now() - t0);
+  const sc = buildScene(q.get('scene') || 'dawn');
+  if (q.get('only')) sc.objects = sc.objects.filter((o, i) => q.get('only').split(',').includes(String(i)));
+  if (q.get('cam')) { const v = q.get('cam').split(',').map(Number); sc.camera.pos = v.slice(0, 3); sc.camera.yaw = v[3]; sc.camera.pitch = v[4]; if (v[5]) sc.camera.fov = v[5]; }
+  if (q.get('sky')) Object.assign(sc.sky, JSON.parse(q.get('sky')));
+  const t1 = performance.now();
+  r.setScene(sc);
+  T.upload = Math.round(performance.now() - t1);
+  window.R = r; window.S = sc;
+  const mode = q.get('mode') || 'preview';
+  if (mode === 'preview') {
+    const t3 = performance.now(); r.drawPreview(sc.camera, 0.25); T.first = Math.round(performance.now() - t3);
+    const times = [];
+    for (let i = 0; i < 3; i++) { const t4 = performance.now(); r.drawPreview(sc.camera, +(q.get('scale') || 1)); times.push(Math.round(performance.now() - t4)); }
+    T.preview = times;
+    T.status = 'done';
+  } else {
+    const samples = +(q.get('spp') || 4);
+    r.startJob(sc.camera, { width: c.width, height: c.height, samples, bryce: true, quality: QUALITY.final });
+    const t2 = performance.now();
+    const loop = () => { r.stepJob(40); r.showJob(); if (r.job.done) { T.render = Math.round(performance.now() - t2); T.status = 'done'; } else requestAnimationFrame(loop); };
+    loop();
+  }
+  const gl = r.gl; const d = gl.getExtension('WEBGL_debug_renderer_info'); T.gpu = d ? gl.getParameter(d.UNMASKED_RENDERER_WEBGL) : '?';
+} catch (e) { T.status = 'error'; T.error = String(e.message || e); st.textContent = T.error; console.error(e); }
+</script></body></html>
