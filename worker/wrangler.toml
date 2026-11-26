@@ -11,4 +11,4 @@ CALLS_PER_IP = "40"
 [[d1_databases]]
 binding = "DB"
 database_name = "hoodoo-usage"
-database_id = "00000000-0000-0000-0000-000000000000"
+database_id = "78d176d0-e4de-42ea-b08d-d9810e80bc2d"
