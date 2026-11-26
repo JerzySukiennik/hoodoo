@@ -151,3 +151,12 @@ export const SCENES = {
 };
 
 export const SCENE_ORDER = ['dawn', 'checker', 'canyon', 'alps', 'alien', 'night', 'mars'];
+
+export const NAMES_PL = {
+  'Chrome Dawn': 'Chromowy świt', 'Checker Infinity': 'Szachownica po horyzont', 'Red Mesa': 'Czerwona mesa', 'Alien Shore': 'Obcy brzeg', 'Alpine Lake': 'Alpejskie jezioro', 'Moonrise': 'Wschód księżyca', 'Red Planet': 'Czerwona planeta',
+  'Water': 'Woda', 'Far range': 'Dalekie pasmo', 'Left peaks': 'Lewe szczyty', 'Right mesa': 'Prawa mesa', 'Chrome sphere': 'Chromowa kula', 'Rock': 'Głaz',
+  'Checker floor': 'Szachownica', 'Glass sphere': 'Szklana kula', 'Gold pyramid': 'Złota piramida', 'Torus': 'Torus', 'Column': 'Kolumna', 'Cone': 'Stożek', 'Cube': 'Lustrzany sześcian',
+  'Desert floor': 'Pustynia', 'Mesas': 'Mesy', 'Hoodoos': 'Iglice', 'Far buttes': 'Dalekie ostańce', 'Pink sea': 'Różowe morze', 'Moss island': 'Wyspa mchu', 'Spire range': 'Pasmo iglic',
+  'Glass orb': 'Szklana kula', 'Moonlet': 'Mały księżyc', 'Ring': 'Pierścień', 'Lake': 'Jezioro', 'Massif': 'Masyw', 'Left shore': 'Lewy brzeg', 'Right shore': 'Prawy brzeg',
+  'Sea': 'Morze', 'Cliffs': 'Klify', 'Far ridge': 'Daleki grzbiet', 'Lantern': 'Latarnia', 'Regolith': 'Regolit', 'Crater field': 'Pole kraterów', 'Volcano': 'Wulkan', 'Boulder': 'Głaz',
+};

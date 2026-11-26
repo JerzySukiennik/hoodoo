@@ -17,7 +17,7 @@ await page.mouse.move(640, 300); await page.mouse.down(); await page.mouse.move(
 out.orbit = await st();
 await page.mouse.move(640, 420); await page.mouse.wheel(0, -120); await page.waitForTimeout(300);
 out.zoom = await st();
-const sp = await page.evaluate(() => { const o = HOODOO.scene.objects.find(x => x.name === 'Chrome sphere'); const p = HOODOO.project(o.pos); return p; });
+const sp = await page.evaluate(() => { const o = HOODOO.scene.objects.find(x => x.type === 'sphere' && x.mat.preset === 'chrome'); const p = HOODOO.project(o.pos); return p; });
 await page.mouse.click(sp[0], sp[1]); await page.waitForTimeout(200);
 out.click = await st();
 const g = await page.evaluate(() => { const o = HOODOO.selected; const f = HOODOO.gizmoFrame(o); const e = HOODOO.project([o.pos[0] + f.size * 0.8, o.pos[1], o.pos[2]]); return e; });

@@ -1,6 +1,7 @@
 // Hoodoo scene model: objects, materials, packing into GPU tables, save files and undo history.
 
-import { MATERIALS, SCENES, SKIES, PATTERNS } from './presets.js';
+import { MATERIALS, SCENES, SKIES, PATTERNS, NAMES_PL } from './presets.js';
+import { t, getLang } from '../ui/i18n.js';
 import { SKY_DEFAULT } from '../engine/sky.js';
 import { hex2rgb, invTRS, uid, len } from '../engine/math.js';
 import { generate, encodeHeights, decodeHeights } from '../engine/terrain.js';
@@ -37,8 +38,10 @@ export function makeObject(type, o = {}) {
 }
 
 function defaultName(type) {
-  return { terrain: 'Terrain', stone: 'Rock', sphere: 'Sphere', cube: 'Cube', cylinder: 'Cylinder', cone: 'Cone', torus: 'Torus', pyramid: 'Pyramid', disc: 'Disc', square: 'Square', plane: 'Ground', water: 'Water', light: 'Light' }[type] || type;
+  return t(type);
 }
+
+const loc = (n) => (getLang() === 'pl' && NAMES_PL[n]) || n;
 
 function defaultMat(type) {
   return { terrain: 'rock', stone: 'granite', plane: 'sand', water: 'water', light: 'glow', sphere: 'chrome', cube: 'ivory', cylinder: 'ivory', cone: 'plastic', torus: 'gold', pyramid: 'sandstone', disc: 'marble', square: 'tiles' }[type] || 'clay';
@@ -52,10 +55,10 @@ export function ensureHeights(o) {
 export function buildScene(key) {
   const p = SCENES[key] || SCENES.dawn;
   const sc = {
-    version: 1, name: p.name,
+    version: 1, name: loc(p.name),
     sky: { ...SKY_DEFAULT, ...p.sky },
     camera: { pos: [...p.camera.pos], yaw: p.camera.yaw, pitch: p.camera.pitch, fov: p.camera.fov },
-    objects: p.objects.map((o) => makeObject(o.type, o)),
+    objects: p.objects.map((o) => makeObject(o.type, { ...o, name: loc(o.name) })),
     anim: { duration: 6, fps: 30, tracks: { camera: [], sun: [], objects: {} } },
     render: { size: 'view', quality: 'normal' },
   };

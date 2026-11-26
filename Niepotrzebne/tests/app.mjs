@@ -5,7 +5,7 @@ const require = createRequire('/Users/jurek/openclaw/node_modules/');
 const {chromium} = require('playwright-core');
 const [out = '/tmp/hoodoo-app.png', query = 'scene=dawn', setup = '', wait = '2500', w = '1440', h = '900'] = process.argv.slice(2);
 const browser = await chromium.launch({ executablePath: '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome', headless: true, args: ['--use-angle=metal', '--enable-gpu', '--ignore-gpu-blocklist'] });
-const page = await browser.newPage({viewport: {width: +w, height: +h}, deviceScaleFactor: +(process.env.DPR || 1)});
+const page = await browser.newPage({viewport: {width: +w, height: +h}, deviceScaleFactor: +(process.env.DPR || 1), locale: 'pl-PL'});
 const logs = [];
 page.on('console', m => { if (m.type() !== 'log' || process.env.V) logs.push(`[${m.type()}] ${m.text()}`); });
 page.on('pageerror', e => logs.push(`[pageerror] ${e.message}\n${(e.stack||'').split('\n').slice(0,4).join('\n')}`));

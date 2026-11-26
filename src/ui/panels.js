@@ -4,7 +4,8 @@ import { h, ib, btn, section, slider, colorRow, selectRow, segmented, toggleRow,
 import { icon, TYPE_ICON } from './icons.js';
 import { t, getLang, setLang } from './i18n.js';
 import { CREATE, buildScene, makeObject, material, ensureHeights } from '../scene/scene.js';
-import { SCENES, SCENE_ORDER, SKIES, MATERIALS } from '../scene/presets.js';
+import { SCENES, SCENE_ORDER, SKIES, MATERIALS, NAMES_PL } from '../scene/presets.js';
+const buildName = (k) => (getLang() === 'pl' && NAMES_PL[SCENES[k].name]) || SCENES[k].name;
 import { skyPreviewColors } from '../engine/sky.js';
 import { rgb2hex } from '../engine/math.js';
 import { sceneFile, readSceneFile } from '../storage.js';
@@ -32,7 +33,7 @@ export function buildPanels(app) {
     { label: t('language'), icon: 'describe', onClick: () => { setLang(getLang() === 'pl' ? 'en' : 'pl'); location.reload(); } },
   ]), { align: 'left' }));
   const sceneMenu = () => popover(menuBtn, menuList([
-    ...SCENE_ORDER.map((k) => ({ label: SCENES[k].name, icon: 'sky', onClick: () => app.setScene(buildScene(k)) })),
+    ...SCENE_ORDER.map((k) => ({ label: buildName(k), icon: 'sky', onClick: () => app.setScene(buildScene(k)) })),
     '-',
     { label: getLang() === 'pl' ? 'Pusta scena' : 'Empty scene', icon: 'plane', onClick: () => app.setScene(emptyScene()) },
   ]), { align: 'left' });
